@@ -45,7 +45,6 @@ EOM
 )
 
 clear
-echo -e "\n\n\n"
 [ -t 1 ] && echo "########## ВАШ КОНФИГ ##########"
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
 long_url="https://th0masi.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
@@ -55,7 +54,7 @@ if [ -z "$short_url" ]; then
   echo "Не удалось создать короткую ссылку. Используем длинную:"
   echo "$long_url"
 else
-  echo -e "\e]8;;${short_url}\aСкачать конфиг файлом\e]8;;\a"
+  echo "Ссылка для скачивания: ${short_url}"
 fi
 [ -t 1 ] && echo "########### ВАШ КОНФИГ ###########"
 
