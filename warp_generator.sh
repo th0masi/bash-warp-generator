@@ -44,13 +44,9 @@ Endpoint = ${peer_endpoint}:${port}
 EOM
 )
 
-config_file="WARP.conf"
-echo "${conf}" > "${config_file}"
-
-upload_link=$(curl -F "file=@${config_file}" https://0x0.st)
-
 clear
+conf_base64=$(echo -n "${conf}" | base64 -w 0)
 echo "Конфигурация успешно создана."
-echo "Скачать конфиг можно по ссылке: ${upload_link}"
+echo "Скачать конфиг можно по ссылке: https://immalware.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
 
 
