@@ -46,9 +46,8 @@ EOM
 
 clear
 echo -e "\n\n\n"
-[ -t 1 ] && echo "########## НАЧАЛО КОНФИГА ##########"
-echo "${conf}"
-[ -t 1 ] && echo "########### КОНЕЦ КОНФИГА ###########"
-
+[ -t 1 ] && echo "########## СКАЧАТЬ КОНФИГ ##########"
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
-echo "Скачать конфиг файлом: https://immalware.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
+echo -e "\e]8;;https://th0masi.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}\aСкачать конфиг файлом\e]8;;\a"
+[ -t 1 ] && echo "########### СКАЧАТЬ КОНФИГ ###########"
+
