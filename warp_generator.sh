@@ -44,20 +44,13 @@ Endpoint = ${peer_endpoint}:${port}
 EOM
 )
 
+config_file="WARP.conf"
+echo "${conf}" > "${config_file}"
+
+upload_link=$(curl -F "file=@${config_file}" https://0x0.st)
+
 clear
+echo "Конфигурация успешно создана."
+echo "Скачать конфиг можно по ссылке: ${upload_link}"
 
-conf_file_path="$HOME/WARP.conf"
-echo "${conf}" > "${conf_file_path}"
 
-echo "Откройте браузер и перейдите по следующему адресу, чтобы скачать файл конфигурации:"
-echo -e "\n\n"
-
-ip_address=$(curl -s ifconfig.me)
-if [ -z "$ip_address" ]; then
-    echo "Не удалось получить IP-адрес."
-fi
-
-echo "http://${ip_address}:8080/WARP.conf"
-
-cd ~
-python3 -m http.server 8080
