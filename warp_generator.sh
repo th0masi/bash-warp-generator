@@ -45,8 +45,13 @@ EOM
 )
 
 clear
-conf_base64=$(echo -n "${conf}" | base64 -w 0)
-echo "Конфигурация успешно создана."
-echo "${conf}"
+config_file="WARP.conf"
+echo "${conf}" > "${config_file}"
+
+cloudshell download "${config_file}"
+
+clear
+
+echo "Скачать конфиг можно через встроенную команду Cloud Shell."
 
 
