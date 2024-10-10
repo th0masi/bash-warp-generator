@@ -47,6 +47,6 @@ EOM
 clear
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
 echo "Конфигурация успешно создана."
-echo "Скачать конфиг можно по ссылке: https://immalware.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
+echo "${conf}"
 
 
