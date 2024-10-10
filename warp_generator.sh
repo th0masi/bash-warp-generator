@@ -48,9 +48,11 @@ clear
 conf_file_path="/tmp/WARP.conf"
 echo "${conf}" > "${conf_file_path}"
 
-upload_response=$(curl --upload-file "${conf_file_path}" https://transfer.sh/WARP.conf)
-if [ -z "$upload_response" ]; then
-  echo "Не удалось загрузить файл на transfer.sh. Пожалуйста, попробуйте снова."
+upload_response=$(curl -s -F "file=@${conf_file_path}" https://file.io)
+download_url=$(echo "${upload_response}" | jq -r '.link')
+
+if [ "${download_url}" != "null" ]; then
+    echo "Ссылка для скачивания файла: ${download_url}"
 else
-  echo "Ссылка для скачивания файла: ${upload_response}"
+    echo "Ошибка при загрузке файла. Пожалуйста, попробуйте снова."
 fi
