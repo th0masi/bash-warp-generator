@@ -45,14 +45,19 @@ EOM
 )
 
 clear
-conf_file_path="/tmp/WARP.conf"
+
+conf_file_path="$HOME/WARP.conf"
 echo "${conf}" > "${conf_file_path}"
 
-upload_response=$(curl -s -F "file=@${conf_file_path}" https://file.io)
-download_url=$(echo "${upload_response}" | jq -r '.link')
+echo "Откройте браузер и перейдите по следующему адресу, чтобы скачать файл конфигурации:"
+echo -e "\n\n"
 
-if [ "${download_url}" != "null" ]; then
-    echo "Ссылка для скачивания файла: ${download_url}"
-else
-    echo "Ошибка при загрузке файла. Пожалуйста, попробуйте снова."
+ip_address=$(curl -s ifconfig.me)
+if [ -z "$ip_address" ]; then
+    echo "Не удалось получить IP-адрес."
 fi
+
+echo "http://${ip_address}:8080/WARP.conf"
+
+cd ~
+python3 -m http.server 8080
