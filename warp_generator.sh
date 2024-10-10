@@ -46,8 +46,16 @@ EOM
 
 clear
 echo -e "\n\n\n"
-[ -t 1 ] && echo "########## СКАЧАТЬ КОНФИГ ##########"
+[ -t 1 ] && echo "########## ВАШ КОНФИГ ##########"
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
-echo -e "\e]8;;https://th0masi.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}\aСкачать конфиг файлом\e]8;;\a"
-[ -t 1 ] && echo "########### СКАЧАТЬ КОНФИГ ###########"
+long_url="https://th0masi.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
+short_url=$(curl -s "https://tinyurl.com/api-create.php?url=${long_url}")
+
+if [ -z "$short_url" ]; then
+  echo "Не удалось создать короткую ссылку. Используем длинную:"
+  echo "$long_url"
+else
+  echo -e "\e]8;;${short_url}\aСкачать конфиг файлом\e]8;;\a"
+fi
+[ -t 1 ] && echo "########### ВАШ КОНФИГ ###########"
 
