@@ -5,7 +5,7 @@
 3. Ждём, когда консоль прогрузится
 4. Вставляем команду
 ```bash
-curl -sSL https://github.com/th0masi/bash-warp-generator/blob/main/warp_generator.sh | bash
+curl -sSL https://github.com/th0masi/bash-warp-generator/main/warp_generator.sh | bash
 ```
 5. Ждём, когда конфиг сгенерируется
 6. Копируем конфиг, либо скачиваем файлом по ссылке и импортируем в AmneziaWG!👍
